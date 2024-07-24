@@ -32,7 +32,6 @@ def track_event():
     print(event_data['user'])
     print(event_data['value'])
     ld_client.track("first-metric", event_data['user'], event_data['value'])
-#     ld_client.track("metrix3", event_data['user'], event_data['value'])
     return jsonify({"status": "event tracked"})
 
 if __name__ == '__main__':

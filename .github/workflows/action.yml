@@ -1,4 +1,3 @@
-name: Find LaunchDarkly flag code references
 on: push
 # cancel in-flight workflow run if another push was triggered
 concurrency:
@@ -18,4 +17,5 @@ steps:
   with:
     accessToken: ${{ secrets.LD_ACCESS_TOKEN }}
     projKey: default
+
 
