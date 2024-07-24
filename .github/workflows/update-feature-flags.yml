@@ -1,4 +1,4 @@
-name: Update LaunchDarkly Feature Flag
+name: Manage Feature Flags with LaunchDarkly
 
 on:
   push:
@@ -6,24 +6,18 @@ on:
       - master
 
 jobs:
-  update-flag:
+  manage-flags:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Update LaunchDarkly Feature Flag
-        run: |
-          curl -X PATCH 'https://app.launchdarkly.com/api/v2/flags/default/developer-feature' \
-            -H 'LD-API-Version: 20240415' \
-            -H 'Authorization: ${{ secrets.LD_ACCESS_TOKEN }}' \
-            -H 'Content-Type: application/json' \
-            -d '[
-                  {
-                    "op": "replace",
-                    "path": "/environments/test/on",
-                    "value": false
-                  }
-                ]'
-
+      - name: Set Feature Flag
+        uses: launchdarkly/ld-feature-flags-action@v1
+        with:
+          api-token: ${{ secrets.LD_ACCESS_TOKEN }}
+          project-key: 'default'
+          flag-key: 'developer-feature'
+          environment: 'test'
+          on: 'false'  # Set to 'false' to disable the flag
