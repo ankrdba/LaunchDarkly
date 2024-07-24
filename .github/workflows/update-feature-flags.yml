@@ -1,4 +1,4 @@
-name: Manage Feature Flags with LaunchDarkly
+name: Evaluate LaunchDarkly Flags
 
 on:
   push:
@@ -6,19 +6,25 @@ on:
       - master
 
 jobs:
-  manage-flags:
+  eval-flags:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set Feature Flag
-        uses: launchdarkly/ld-feature-flags-action@v1
+      - name: Evaluate feature flags
+        id: ld
+        uses: launchdarkly/gha-flags@v1.0.1
         with:
-          api-token: ${{ secrets.LD_ACCESS_TOKEN }}
-          project-key: 'default'
-          flag-key: 'developer-feature'
-          environment: 'test'
-          on: 'false'
+          sdk-key: ${{ secrets.LAUNCHDARKLY_SDK_KEY }}
+          flags: developer-feature,false
+
+      - name: If flag is true
+        if: fromJSON(steps.ld.outputs.developer-feature) == true
+        run: echo "Developer feature is enabled"
+
+      - name: If flag is false
+        if: fromJSON(steps.ld.outputs.developer-feature) == false
+        run: echo "Developer feature is disabled"
 
