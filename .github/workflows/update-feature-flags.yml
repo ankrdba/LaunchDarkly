@@ -1,0 +1,29 @@
+name: Update LaunchDarkly Feature Flag
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  update-flag:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Update LaunchDarkly Feature Flag
+        run: |
+          curl -X PATCH 'https://app.launchdarkly.com/api/v2/flags/default/developer-feature' \
+            -H 'LD-API-Version: 20240415' \
+            -H 'Authorization: ${{ secrets.LD_ACCESS_TOKEN }}' \
+            -H 'Content-Type: application/json' \
+            -d '[
+                  {
+                    "op": "replace",
+                    "path": "/environments/test/on",
+                    "value": false
+                  }
+                ]'
+
