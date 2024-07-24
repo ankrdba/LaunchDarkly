@@ -19,9 +19,9 @@ jobs:
         with:
           sdk-key: ${{ secrets.LAUNCHDARKLY_SDK_KEY }}
           flags: |
-            show-textbox,false
-            developer-feature,false
-            tester-feature,false
+            show-textbox
+            developer-feature
+            tester-feature
 
       - name: Print flag values
         run: |
