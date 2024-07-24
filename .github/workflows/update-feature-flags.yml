@@ -8,7 +8,7 @@ jobs:
         id: flags
         uses: launchdarkly/gha-flags@v1.0.1
         with:
-          sdk-key: ${{ secrets.LD_SDK_KEY }}
+          sdk-key: ${{ secrets.LAUNCHDARKLY_SDK_KEY }}
           flags: |
             show-textbox
             developer-feature
