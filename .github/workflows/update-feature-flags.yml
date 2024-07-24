@@ -1,20 +1,33 @@
-name: Evaluate LaunchDarkly flags
-on: push
+name: Evaluate LaunchDarkly Flags
+
+on:
+  push:
+    branches:
+      - master
+
 jobs:
   eval-flags:
     runs-on: ubuntu-latest
+
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
       - name: Evaluate flags
         id: flags
         uses: launchdarkly/gha-flags@v1.0.1
         with:
           sdk-key: ${{ secrets.LAUNCHDARKLY_SDK_KEY }}
           flags: |
-            show-textbox
-            developer-feature
-            tester-feature
+            show-textbox,false
+            developer-feature,false
+            tester-feature,false
+
       - name: Print flag values
         run: |
-          echo ${{ steps.flags.outputs.show-textbox }}
-          echo ${{ steps.flags.outputs.developer-feature }}
-          echo ${{ steps.flags.outputs.tester-feature}}
+          echo "show-textbox: ${{ steps.flags.outputs.show-textbox }}"
+          echo "developer-feature: ${{ steps.flags.outputs.developer-feature }}"
+          echo "tester-feature: ${{ steps.flags.outputs.tester-feature }}"
+      - name: Debug outputs
+        run: |
+          echo "Outputs: ${{ toJson(steps.flags.outputs) }}"
