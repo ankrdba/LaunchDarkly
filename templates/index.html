@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feature Flag Demo</title>
+    <script src="https://app.launchdarkly.com/snippet/ldclient.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const user = {{ user | tojson | safe }};
+            const client = LDClient.initialize('669bbcc2b4d52f0f6ad69ae3', user);
+
+            client.on('ready', () => {
+                updateFeatures(client);
+                client.on('change', () => {
+                    updateFeatures(client);
+                });
+            });
+
+            function updateFeatures(client) {
+                const showTextbox = client.variation('show-textbox', false);
+                const developerFeature = client.variation('developer-feature', false);
+                const testerFeature = client.variation('tester-feature', false);
+
+
+                if (showTextbox) {
+                    document.getElementById('textbox').style.display = 'block';
+                } else {
+                    document.getElementById('textbox').style.display = 'none';
+                }
+
+                if (developerFeature) {
+                    document.getElementById('developer-feature').style.display = 'block';
+                } else {
+                    document.getElementById('developer-feature').style.display = 'none';
+                }
+
+                if (testerFeature) {
+                    document.getElementById('tester-feature').style.display = 'block';
+                } else {
+                    document.getElementById('tester-feature').style.display = 'none';
+                }
+            }
+        });
+
+        function trackEvent(user, value) {
+            fetch('/api/track-event', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ user: user, value: value })
+            });
+        }
+    </script>
+</head>
+<body>
+    <h1>Feature Flag Demo with LaunchDarkly</h1>
+    <div id="textbox" style="display: none;">
+        <label for="textbox">Feature Textbox:</label>
+        <input type="text" id="textbox1" name="textbox" />
+        <button onclick="trackEvent({{ user }}, {{ userIdx }})">Engage</button>
+    </div>
+    <div id="developer-feature" style="display: none;">
+        <p>This feature is meant to be used by Developers only.</p>
+    </div>
+    <div id="tester-feature" style="display: none;">
+        <p>This feature is meant to be used by Testers only.</p>
+    </div>
+    <div>
+        {{ user }}
+    </div>
+</body>
+</html>
