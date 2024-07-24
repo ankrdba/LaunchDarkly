@@ -20,4 +20,5 @@ jobs:
           project-key: 'default'
           flag-key: 'developer-feature'
           environment: 'test'
-          on: 'false'  # Set to 'false' to disable the flag
+          on: 'false'
+
