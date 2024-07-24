@@ -1,4 +1,4 @@
-# LaunchDarkly Flask App
+# LaunchDarkly App
 
 ## Setup Instructions
 
