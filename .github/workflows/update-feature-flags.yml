@@ -1,30 +1,20 @@
-name: Evaluate LaunchDarkly Flags
-
-on:
-  push:
-    branches:
-      - master
-
+name: Evaluate LaunchDarkly flags
+on: push
 jobs:
   eval-flags:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Evaluate feature flags
-        id: ld
+      - name: Evaluate flags
+        id: flags
         uses: launchdarkly/gha-flags@v1.0.1
         with:
-          sdk-key: ${{ secrets.LAUNCHDARKLY_SDK_KEY }}
-          flags: developer-feature,false
-
-      - name: If flag is true
-        if: fromJSON(steps.ld.outputs.developer-feature) == true
-        run: echo "Developer feature is enabled"
-
-      - name: If flag is false
-        if: fromJSON(steps.ld.outputs.developer-feature) == false
-        run: echo "Developer feature is disabled"
-
+          sdk-key: ${{ secrets.LD_SDK_KEY }}
+          flags: |
+            show-textbox
+            developer-feature
+            tester-feature
+      - name: Print flag values
+        run: |
+          echo ${{ steps.flags.outputs.show-textbox }}
+          echo ${{ steps.flags.outputs.developer-feature }}
+          echo ${{ steps.flags.outputs.tester-feature}}
