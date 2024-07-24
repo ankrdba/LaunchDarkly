@@ -25,9 +25,9 @@ jobs:
 
       - name: Print flag values
         run: |
-          echo "show-textbox: ${{ steps.ld.outputs.show-textbox }}"
-          echo "developer-feature: ${{ steps.ld.outputs.developer-feature }}"
-          echo "tester-feature: ${{ steps.ld.outputs.tester-feature }}"
+          echo "show-textbox: ${{ steps.flags.outputs.show-textbox }}"
+          echo "developer-feature: ${{ steps.flags.outputs.developer-feature }}"
+          echo "tester-feature: ${{ steps.flags.outputs.tester-feature }}"
       - name: Debug outputs
         run: |
-          echo "Outputs: ${{ toJson(steps.ld.outputs) }}"
+          echo "Outputs: ${{ toJson(steps.flags.outputs) }}"
