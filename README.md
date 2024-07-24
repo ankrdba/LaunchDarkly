@@ -2,27 +2,27 @@
 
 ## Setup Instructions
 
-1. **Install Required Dependencies**
+1. Install Required Dependencies**
 
-   a. **Install pip** (if not already installed):
+   a. Install pip** (if not already installed):
    ```bash
    curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
    python3 get-pip.py
    ```
-   b. ***Install ldclient :
+   b. Install ldclient :
    ```bash
    pip install ldclient-py
    ```
-   c. ***Install Flask :
+   c. Install Flask :
    ```bash
    pip install Flask
    ```
 
-2. **Run application
+2. Run application
    ```bash
    python3 app.py
    ```
-3. **Curl for toogle flag:
+3. Curl for toogle flag:
    ```bash
    curl -X PATCH 'https://app.launchdarkly.com/api/v2/flags/default/developer-feature' \
     -H 'LD-API-Version: 20240415' \
