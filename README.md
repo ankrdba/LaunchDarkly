@@ -1,4 +1,4 @@
-# LaunchDarkly App
+# LaunchDarkly App Instructions
 
 ## Setup Instructions
 
