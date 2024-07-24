@@ -9,11 +9,11 @@ jobs:
         uses: launchdarkly/gha-flags@v1.0.1
         with:
           sdk-key: ${{ secrets.LAUNCHDARKLY_SDK_KEY }}
-          flags: developer-feature
+          flags: show-textbox
       - name: If true
-        if: fromJSON(steps.ld.outputs.developer-feature) == true
+        if: fromJSON(steps.ld.outputs.show-textbox) == true
         run: echo "It's true"
       - name: If false
-        if: fromJSON(steps.ld.outputs.developer-feature) == false
+        if: fromJSON(steps.ld.outputs.show-textbox) == false
         run: echo "It's false"
 
