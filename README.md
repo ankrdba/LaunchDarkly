@@ -48,7 +48,8 @@ This application demonstrates the following features of Launchdarkly platform.
 
    c. Create a feature flag called developer-feature with the following settings
 
-   <img width="1161" alt="Screenshot 2024-07-28 at 11 03 44" src="https://github.com/user-attachments/assets/7f979842-a4e9-437d-898d-01e53b1160fd">   
+   <img width="1161" alt="Screenshot 2024-07-28 at 11 03 44" src="https://github.com/user-attachments/assets/7f979842-a4e9-437d-898d-01e53b1160fd"> 
+   
 
 2. Run application
    ```bash
@@ -151,43 +152,39 @@ The application has two features called developer-feature and tester-feature whi
 ## Demo Part 3: Experimentation
 
 ### Experiment Objective
-The goal of the experiment is to measure the impact of different feature variations on user behaviour. Specifically, you might be testing whether showing certain features (like a textbox, developer-specific content, or tester-specific content) affects user engagement or other key metrics.
+The goal of the experiment is to vary the display of a feature in the application. Specifically, we will display an Engage button to a subset of users based on the condition defined in the experiment.
 
 ### Experiment Design
-Variations: Different versions of the feature flag (e.g., showing or hiding a textbox)
-Metrics: The outcome you want to measure, such as user engagement, conversion rates, etc
+Variations: Different versions of the feature flag (e.g., showing or hiding a engage button)
+Metrics: User - How many users this feature is displayed to?
 Targeting: Criteria for including users in the experiment (e.g., all users, specific segments)
 
-### Example Scenario
-
-Feature Flag Variations:
-Variation A: Show textbox
-Variation B: Show developer-specific content
-Variation C: Show tester-specific content
-
-Metrics:
-Engagement (e.g. clicking the "Engage" button)
-Time spent on the page
-Interaction with specific features
-
-Audience:
-To compare the behaviour of the users exposed to the feature against those who are not, we will target only 90% of the users in this experiment. The remaining 10% (control group) will not receive the feature. 
+### Audience:
+To compare the behaviour of the users exposed to the feature against those who are not, we will target only 90% of the users in this experiment. The remaining 10% (control group) will not receive the feature.
 
 Random Assignment: Launchdarkly handles the random assignment based on the user key.
 
-1. Create a metric called first-metric with the following settings
+1. Create a Feature Flag called engage-button with the following settings
    
-   <img width="237" alt="Screenshot 2024-07-28 at 11 53 19" src="https://github.com/user-attachments/assets/81f4b072-ef91-44ed-a446-f665955a5347">
-
-2. Create an Experiment with the following settings
-
-   <img width="1165" alt="Screenshot 2024-07-28 at 14 48 52" src="https://github.com/user-attachments/assets/78895389-32d0-4727-a098-de5fdc65fab6">
-   <img width="1144" alt="Screenshot 2024-07-28 at 14 49 30" src="https://github.com/user-attachments/assets/3dbfc131-06be-404c-8aa8-56ed53acce49">
-
-3. 
+   <img width="649" alt="Screenshot 2024-07-28 at 20 11 34" src="https://github.com/user-attachments/assets/5ad2771b-fb95-4b89-a6e4-d49c9b299aeb">
 
    
+3. Create a metric called second-metric with the following settings
    
+   <img width="228" alt="Screenshot 2024-07-28 at 20 12 39" src="https://github.com/user-attachments/assets/c6b33955-ffc6-4932-9576-4899be648423">
+
+
+4. Create an Experiment called engage-experiment with the following settings
+
+   <img width="1115" alt="Screenshot 2024-07-28 at 20 14 21" src="https://github.com/user-attachments/assets/3aa62638-c6f4-4b36-ad07-b9388ff3ed2f">
+   <img width="1083" alt="Screenshot 2024-07-28 at 20 14 44" src="https://github.com/user-attachments/assets/3be3c813-5471-4258-b141-3d552bf947ec">
+
+5. Run the experiment.
+
+6. Refresh the application 10 times, the probability stats should get updated. The targeting rule for the engage-flag will get updated as follows.
+
+  <img width="928" alt="Screenshot 2024-07-28 at 20 16 43" src="https://github.com/user-attachments/assets/31ae4090-2492-4262-b7a0-891012562966">
+
 
 ## Demo Part 4: Github Integration
 I am demonstrating the Github integration with Launchdarkly through a yaml workflow that evaluates the status of a Launchdarkly feature flag every time a change is pushed to this repository. This part requires a repository secret called LAUNCHDARKLY_SDK_KEY to be configured in the Github settings. 
