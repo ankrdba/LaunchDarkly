@@ -1,11 +1,12 @@
 from flask import Flask, render_template, jsonify, request
 import ldclient
 from ldclient.config import Config
+import constants
 
 app = Flask(__name__)
 
 # LaunchDarkly SDK setup
-sdk_key = 'sdk-8df86352-6fb3-4b20-843c-4908d4ea8223'  # Replace with your actual SDK key
+sdk_key = constants.LAUNCHDARKLY_SDK_KEY
 ldclient.set_config(Config(sdk_key))
 
 # Create a LaunchDarkly client instance
