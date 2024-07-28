@@ -54,7 +54,7 @@ This application demonstrates the following features of Launchdarkly platform.
    ```bash
    python3 app.py
    ```
-## Part 1: Release and Remediate 
+## Demo Part 1: Release and Remediate 
 The application has a textbox feature that is managed with show-textbox flag. The textbox is displayed only if the feature is enabled.
 
 1. Open the application
@@ -74,7 +74,7 @@ The application has a textbox feature that is managed with show-textbox flag. Th
         }
    ]'
    ```
-## Part 2: Target
+## Demo Part 2: Target
 In this part, we will demo individual targeting and rule-based targeting.
 
 ### Individual Targeting
@@ -102,7 +102,7 @@ Every time you refresh the application, the user counter increments by 1. The sh
    ]'
    ```
 
-4. Refresh the application 10 times to reach User11. The textbox feature will not be there for User11
+4. Refresh the application 10 times to reach User11. The textbox will disappear for all users after User10.
 
 ### Rule-based Targeting
 
@@ -147,4 +147,22 @@ The application has two features called developer-feature and tester-feature whi
    ``` 
 
 4. Refresh the application multiple times to see both roles and their respective graphics alternate
+
+## Demo Part 3: Experimentation
+
+1. Create a metric called first-metric with the following settings
+   
+   <img width="237" alt="Screenshot 2024-07-28 at 11 53 19" src="https://github.com/user-attachments/assets/81f4b072-ef91-44ed-a446-f665955a5347">
+
+2. Create an Experiment 
+
+## Demo Part 4: Github Integration
+I am demonstrating the Github integration with Launchdarkly through a yaml workflow that evaluates the status of a Launchdarkly feature flag every time a change is pushed into this repository. This part requires a repository secret called LAUNCHDARKLY_SDK_KEY to be configured in the Github settings. 
+
+1. Configure a repository secret called LAUNCHDARKLY_SDK_KEY in the Github settings
+2. Make a change - add a new text file or change an existing one
+3. Go to Actions --> Click on the latest workflow run --> Click on eval-flags
+4. The workflow will mark True or False based on the status of show-textbox flag
+   
+
 
