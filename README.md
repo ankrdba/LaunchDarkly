@@ -27,7 +27,8 @@ This application demonstrates the following features of Launchdarkly platform.
 2. Set up repository on the local machine
 
    a. Clone git repository
-      ``git clone https://github.com/ankrdba/LaunchDarkly.git
+      ```git clone https://github.com/ankrdba/LaunchDarkly.git
+      ```
       
    b. Setup SDK Key and Client ID in constants.py
       ```echo "LAUNCHDARKLY_SDK_KEY='YOUR_SDK_KEY'" >>constants.py
