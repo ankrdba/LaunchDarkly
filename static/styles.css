@@ -1,0 +1,27 @@
+body {
+    background-color: #f8f9fa;
+}
+
+header {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+main .card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.feature {
+    display: none;
+}
+
+.user-info {
+    margin-top: 2rem;
+}
+
+
+.card-img-bottom {
+    width: 40%;
+    height: 100%; /* Adjust height if necessary */
+    /*max-height: 150px; !* Adjust to fit your design *!*/
+    object-fit: cover; /* Ensure image fits within bounds without distortion */
+}

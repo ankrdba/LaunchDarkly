@@ -4,11 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Feature Flag Demo</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/styles.css">
     <script src="https://app.launchdarkly.com/snippet/ldclient.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', (event) => {
             const user = {{ user | tojson | safe }};
-            const clientId = {{ clientId | tojson | safe }}
+            const clientId = {{ clientId | tojson | safe }};
             const client = LDClient.initialize(clientId, user);
 
             client.on('ready', () => {
@@ -23,24 +25,9 @@
                 const developerFeature = client.variation('developer-feature', false);
                 const testerFeature = client.variation('tester-feature', false);
 
-
-                if (showTextbox) {
-                    document.getElementById('textbox').style.display = 'block';
-                } else {
-                    document.getElementById('textbox').style.display = 'none';
-                }
-
-                if (developerFeature) {
-                    document.getElementById('developer-feature').style.display = 'block';
-                } else {
-                    document.getElementById('developer-feature').style.display = 'none';
-                }
-
-                if (testerFeature) {
-                    document.getElementById('tester-feature').style.display = 'block';
-                } else {
-                    document.getElementById('tester-feature').style.display = 'none';
-                }
+                document.getElementById('textbox').style.display = showTextbox ? 'block' : 'none';
+                document.getElementById('developer-feature').style.display = developerFeature ? 'block' : 'none';
+                document.getElementById('tester-feature').style.display = testerFeature ? 'block' : 'none';
             }
         });
 
@@ -56,20 +43,39 @@
     </script>
 </head>
 <body>
+<header class="bg-primary text-white text-center py-3">
     <h1>Feature Flag Demo with LaunchDarkly</h1>
-    <div id="textbox" style="display: none;">
-        <label for="textbox">Feature Textbox:</label>
-        <input type="text" id="textbox1" name="textbox" />
-        <button onclick="trackEvent({{ user }}, {{ userIdx }})">Engage</button>
+</header>
+<main class="container mt-4">
+    <div id="textbox" class="feature card mb-4">
+        <div class="card-body text-center">
+            <label for="textbox1">Feature Textbox:</label>
+            <input type="text" id="textbox1" name="textbox" class="form-control mb-3" />
+            <button class="btn btn-primary" onclick="trackEvent({{ user }}, {{ userIdx }})">Engage</button>
+        </div>
     </div>
-    <div id="developer-feature" style="display: none;">
-        <p>This feature is meant to be used by Developers only.</p>
+    <div id="developer-feature" class="feature card mb-4">
+        <div class="card-body text-center">
+            <h5 class="card-title">Developer Feature</h5>
+            <img src="{{ url_for('static', filename='developer-feature.jpg') }}" class="card-img-bottom" alt="Developer Feature Image">
+            <p class="card-text">This feature is meant to be used by Developers only.</p>
+        </div>
     </div>
-    <div id="tester-feature" style="display: none;">
-        <p>This feature is meant to be used by Testers only.</p>
+    <div id="tester-feature" class="feature card mb-4">
+        <div class="card-body text-center">
+            <h5 class="card-title">Tester Feature</h5>
+            <img src="{{ url_for('static', filename='tester-feature.jpg') }}" class="card-img-bottom" alt="Tester Feature Image">
+            <p class="card-text">This feature is meant to be used by Testers only.</p>
+        </div>
     </div>
-    <div>
-        {{ user }}
+    <div class="user-info card">
+        <div class="card-body text-center">
+            <p>{{ user }}</p>
+        </div>
     </div>
+</main>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
