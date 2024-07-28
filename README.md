@@ -180,9 +180,11 @@ Random Assignment: Launchdarkly handles the random assignment based on the user 
    <img width="1115" alt="Screenshot 2024-07-28 at 20 14 21" src="https://github.com/user-attachments/assets/3aa62638-c6f4-4b36-ad07-b9388ff3ed2f">
    <img width="1083" alt="Screenshot 2024-07-28 at 20 14 44" src="https://github.com/user-attachments/assets/3be3c813-5471-4258-b141-3d552bf947ec">
 
-5. Run the experiment.
+5. Ensure that the engage-button flag is switched on
+   
+7. Start the experiment
 
-6. Refresh the application 10 times, the probability stats should get updated. The targeting rule for the engage-flag will get updated as follows.
+8. Refresh the application 10 times, the probability stats should get updated. The targeting rule for the engage-flag will also be updated as follows.
 
   <img width="928" alt="Screenshot 2024-07-28 at 20 16 43" src="https://github.com/user-attachments/assets/31ae4090-2492-4262-b7a0-891012562966">
 
