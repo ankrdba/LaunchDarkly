@@ -159,11 +159,12 @@ Variations: Different versions of the feature flag (e.g., showing or hiding a en
 Metrics: User - How many users this feature is displayed to?
 Targeting: Criteria for including users in the experiment (e.g., all users, specific segments)
 
-### Audience:
+### Audience
 To compare the behaviour of the users exposed to the feature against those who are not, we will target only 90% of the users in this experiment. The remaining 10% (control group) will not receive the feature.
 
 Random Assignment: Launchdarkly handles the random assignment based on the user key.
 
+### Steps
 1. Create a Feature Flag called engage-button with the following settings
    
    <img width="649" alt="Screenshot 2024-07-28 at 20 11 34" src="https://github.com/user-attachments/assets/5ad2771b-fb95-4b89-a6e4-d49c9b299aeb">
