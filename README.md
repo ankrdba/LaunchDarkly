@@ -54,7 +54,7 @@ This application demonstrates the following features of Launchdarkly platform.
    ```bash
    python3 app.py
    ```
-## Part 1 Release and Remediate 
+## Part 1: Release and Remediate 
 The application has a textbox feature that is managed with show-textbox flag. The textbox is displayed only if the feature is enabled.
 
 1. Open the application
@@ -74,4 +74,8 @@ The application has a textbox feature that is managed with show-textbox flag. Th
         }
    ]'
   ```
+## Part 2: Target
+ 
+
+
 
