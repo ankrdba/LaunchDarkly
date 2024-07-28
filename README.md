@@ -150,11 +150,44 @@ The application has two features called developer-feature and tester-feature whi
 
 ## Demo Part 3: Experimentation
 
+### Experiment Objective
+The goal of the experiment is to measure the impact of different feature variations on user behaviour. Specifically, you might be testing whether showing certain features (like a textbox, developer-specific content, or tester-specific content) affects user engagement or other key metrics.
+
+### Experiment Design
+Variations: Different versions of the feature flag (e.g., showing or hiding a textbox)
+Metrics: The outcome you want to measure, such as user engagement, conversion rates, etc
+Targeting: Criteria for including users in the experiment (e.g., all users, specific segments)
+
+### Example Scenario
+
+Feature Flag Variations:
+Variation A: Show textbox
+Variation B: Show developer-specific content
+Variation C: Show tester-specific content
+
+Metrics:
+Engagement (e.g. clicking the "Engage" button)
+Time spent on the page
+Interaction with specific features
+
+Audience:
+To compare the behaviour of the users exposed to the feature against those who are not, we will target only 90% of the users in this experiment. The remaining 10% (control group) will not receive the feature. 
+
+Random Assignment: Launchdarkly handles the random assignment based on the user key.
+
 1. Create a metric called first-metric with the following settings
    
    <img width="237" alt="Screenshot 2024-07-28 at 11 53 19" src="https://github.com/user-attachments/assets/81f4b072-ef91-44ed-a446-f665955a5347">
 
-2. Create an Experiment 
+2. Create an Experiment with the following settings
+
+   <img width="1165" alt="Screenshot 2024-07-28 at 14 48 52" src="https://github.com/user-attachments/assets/78895389-32d0-4727-a098-de5fdc65fab6">
+   <img width="1144" alt="Screenshot 2024-07-28 at 14 49 30" src="https://github.com/user-attachments/assets/3dbfc131-06be-404c-8aa8-56ed53acce49">
+
+3. 
+
+   
+   
 
 ## Demo Part 4: Github Integration
 I am demonstrating the Github integration with Launchdarkly through a yaml workflow that evaluates the status of a Launchdarkly feature flag every time a change is pushed into this repository. This part requires a repository secret called LAUNCHDARKLY_SDK_KEY to be configured in the Github settings. 
