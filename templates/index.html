@@ -8,7 +8,8 @@
     <script>
         document.addEventListener('DOMContentLoaded', (event) => {
             const user = {{ user | tojson | safe }};
-            const client = LDClient.initialize('669bbcc2b4d52f0f6ad69ae3', user);
+            const clientId = {{ clientId | tojson | safe }}
+            const client = LDClient.initialize(clientId, user);
 
             client.on('ready', () => {
                 updateFeatures(client);

@@ -25,7 +25,7 @@ def index():
     global userIdx
     user = users[userIdx % len(users)]
     userIdx += 1
-    return render_template('index.html', user=user, userIdx=userIdx)
+    return render_template('index.html', user=user, userIdx=userIdx, clientId=constants.CLIENT_ID)
 
 @app.route('/api/track-event', methods=['POST'])
 def track_event():
