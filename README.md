@@ -190,12 +190,12 @@ Random Assignment: Launchdarkly handles the random assignment based on the user 
    
 
 ## Demo Part 4: Github Integration
-I am demonstrating the Github integration with Launchdarkly through a yaml workflow that evaluates the status of a Launchdarkly feature flag every time a change is pushed into this repository. This part requires a repository secret called LAUNCHDARKLY_SDK_KEY to be configured in the Github settings. 
+I am demonstrating the Github integration with Launchdarkly through a yaml workflow that evaluates the status of a Launchdarkly feature flag every time a change is pushed to this repository. This part requires a repository secret called LAUNCHDARKLY_SDK_KEY to be configured in the Github settings. 
 
 1. Configure a repository secret called LAUNCHDARKLY_SDK_KEY in the Github settings
-2. Make a change - add a new text file or change an existing one
+2. Push a change to the repository - You can add a new text file or change an existing one
 3. Go to Actions --> Click on the latest workflow run --> Click on eval-flags
-4. The workflow will mark True or False based on the status of show-textbox flag
+4. The workflow will mark True or False based on the status of show-textbox flag in Launchdarkly
    
 
 
