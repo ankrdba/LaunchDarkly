@@ -22,10 +22,12 @@
 
             function updateFeatures(client) {
                 const showTextbox = client.variation('show-textbox', false);
+                const engageButton = client.variation('engage-button', false);
                 const developerFeature = client.variation('developer-feature', false);
                 const testerFeature = client.variation('tester-feature', false);
 
                 document.getElementById('textbox').style.display = showTextbox ? 'block' : 'none';
+                document.getElementById('engage').style.display = engageButton ? 'block' : 'none';
                 document.getElementById('developer-feature').style.display = developerFeature ? 'block' : 'none';
                 document.getElementById('tester-feature').style.display = testerFeature ? 'block' : 'none';
             }
@@ -52,6 +54,12 @@
             <label for="textbox1">Feature Textbox:</label>
             <input type="text" id="textbox1" name="textbox" class="form-control mb-3" />
             <button class="btn btn-primary" onclick="trackEvent({{ user }}, {{ userIdx }})">Engage</button>
+        </div>
+    </div>
+    <div id="engage" class="feature card mb-4">
+        <div class="card-body text-center">
+            <label for="engage1">Engage Button:</label>
+            <button id="engage1" class="btn btn-primary" onclick="trackEvent({{ user }}, {{ userIdx }})">Engage</button>
         </div>
     </div>
     <div id="developer-feature" class="feature card mb-4">

@@ -32,7 +32,7 @@ def track_event():
     event_data = request.json
     print(event_data['user'])
     print(event_data['value'])
-    ld_client.track("first-metric", event_data['user'], event_data['value'])
+    ld_client.track("second-metric", event_data['user'], event_data['value'])
     return jsonify({"status": "event tracked"})
 
 if __name__ == '__main__':
